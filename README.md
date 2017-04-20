@@ -1,5 +1,7 @@
 ## Welcome to GitHub Pages
 
+[![Build Status](https://travis-ci.org/whitneyburrow/HighDim2Means.svg?branch=master)](https://travis-ci.org/whitneyburrow/HighDim2Means)
+
 You can use the [editor on GitHub](https://github.com/whitneyburrow/HighDim2Means/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
