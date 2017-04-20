@@ -1,4 +1,7 @@
 #' SVD Reduction for High Dimensional Data Pairs.
+#' 
+#' The following performs dimension reduction on two samples of
+#' high dimensional data
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
