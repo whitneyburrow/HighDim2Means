@@ -2,17 +2,16 @@
 % Please edit documentation in R/svdTest.R
 \name{svdTest}
 \alias{svdTest}
-\alias{hotellingT2}
 \title{SVD Test}
 \usage{
 svdTest(x, y, method = "svd")
-
-hotellingT2(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}
 
 \item{y}{Data set 2.}
+
+\item{method}{Method for reduction. Can use traditional svd or svd of scatter matrix.}
 }
 \description{
 The following performs a Hotelling T2 test on a high dimensional

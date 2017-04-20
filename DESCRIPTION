@@ -6,10 +6,12 @@ Author: Whitney Burrow
 Maintainer: Whitney Burrow <whitneyvelvet@gmail.com>
 Description: Runs various tests for equality of high dimensional mean vectors.
     Performs power comparisons. Performs SVD Reduction on high dimensional data.
-License: What license is it under?
+License: MIT License
 LazyData: TRUE
 RoxygenNote: 6.0.1
 Imports:
+    stats,
+    utils,
     dplyr,
     MASS,
     Matrix,

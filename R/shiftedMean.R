@@ -6,7 +6,6 @@
 #' @param mean Original mean vector.
 #' @param shift Amount to shift by.
 #' @param m Number of blocks to experience shift.
-#' @param numBlocks Total number of blocks. Defaults to p/25.
 #'
 #' @return
 #' @export

@@ -12,8 +12,6 @@ shiftedMean(mean, shift, m)
 \item{shift}{Amount to shift by.}
 
 \item{m}{Number of blocks to experience shift.}
-
-\item{numBlocks}{Total number of blocks. Defaults to p/25.}
 }
 \description{
 This function shifts a given mean vector. The function shifts 4/5 of each

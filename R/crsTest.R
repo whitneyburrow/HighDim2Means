@@ -2,11 +2,11 @@
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
+#' @param B1 Number of times to randomly subset. Defaults to 100.
 #'
-#' @return
+#' @return Clustered random subspaces statistic.
 #' @export
-#'
-#' @examples
+
 
 crsTest <- function(x, y, B1 = 100) {
   n1 <- nrow(x)

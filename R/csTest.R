@@ -2,16 +2,19 @@
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
+#' @param k k Number of dimensions to select. Defaults to floor((n1 + n2 - 2) / 2).
+#' @param B1 Number of times to randomly subset full data. Defaults to 100.
+#' @param B2 Number of permutations for calculating pvalue. Defaults to 100.
+#' @param data Data frame on which to calculate Pearson distances between variables.
+#' @param n Sample size.
+#' @param p Dimension.
 #'
-#' @import cluster
-#'
-#' @return
+#' @return Zhang and Pan cluster subspaces statistic.
 #' @export
 #'
-#' @examples
-#'
 
-csTest <- function(x, y) {
+csTest <- function(x, y, k, B1 = 100) {
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
@@ -31,8 +34,7 @@ csTest <- function(x, y) {
 #' @rdname csTest
 #' @export
 
-csPval <- function(x, y, k, B1 = 100, B2 = 100,
-                   parallel = TRUE, mc.cores = 2) {
+csPval <- function(x, y, k, B1 = 100, B2 = 100) {
   n1 <- nrow(x)
   n2 <- nrow(y)
   n <- n1 + n2 - 2
@@ -42,26 +44,17 @@ csPval <- function(x, y, k, B1 = 100, B2 = 100,
   if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   z <- rbind(x, y)
   csObs <- csTest(x, y, k, B1)
-  if(parallel == TRUE) {
-    csZ <- mclapply(1:B2, function(i) {
+  csZ <- sapply(1:B2, function(i) {
       xRows <- sample(n1 + n2, n1)
       xNew <- z[xRows, ]
       yNew <- z[-xRows, ]
       csTest(xNew, yNew, k, B1)
-    }, mc.cores = mc.cores)
-    csZ <- unlist(csZ)
-  } else {
-    csZ <- sapply(1:B2, function(i) {
-      xRows <- sample(n1 + n2, n1)
-      xNew <- z[xRows, ]
-      yNew <- z[-xRows, ]
-      csTest(xNew, yNew, k, B1)
-    })
-  }
+  })
   sum(csZ >= csObs) / B2
 }
 
 #' @rdname csTest
+#' @importFrom stats cov
 #' @export
 hotellingCluster <- function(x, y) {
   x <- as.matrix(x)
@@ -70,13 +63,15 @@ hotellingCluster <- function(x, y) {
   n2 <- nrow(y)
   p <- ncol(x)
   dbar <- colMeans(x) - colMeans(y)
-  sPool <- ((n1 - 1) * cov(x) + (n2 - 1) * cov(y)) / (n1 + n2 - 2)
+  sPool <- ((n1 - 1) * stats::cov(x) + (n2 - 1) * stats::cov(y)) / (n1 + n2 - 2)
   weight <- (n1 * n2) / (n1 + n2)
   as.numeric(weight %*% t(dbar) %*%
                solve((1 / n1 + 1 / n2) * sPool) %*% dbar)
 }
 
 #' @rdname csTest
+#' @importFrom stats hclust
+#' @importFrom stats cutree
 #' @export
 pearsonClusters <- function(x, y) {
   df <- list(x = x, y = y)
@@ -84,8 +79,8 @@ pearsonClusters <- function(x, y) {
   distances <- pearsonDistance(df)
   dc <- pearson(nrow(df) - 2, ncol(df))
   kc <- floor(2 * (nrow(df) - 2)/3)
-  clusterStart <- hclust(distances)
-  cuts <- cutree(clusterStart, h = dc)
+  clusterStart <- stats::hclust(distances)
+  cuts <- stats::cutree(clusterStart, h = dc)
 
   clusters <- data.frame(variable = names(cuts),
                          cluster = as.character(cuts),
@@ -98,8 +93,8 @@ pearsonClusters <- function(x, y) {
       varNames <- clusters$variable[which(clusters$cluster == toSub[[i]])]
       newDF <- df[, vars]
       newDist <- pearsonDistance(newDF)
-      subclusterStart <- cluster::diana(newDist)
-      cuts <- cutree(subclusterStart, k = 2)
+      subclusterStart <- stats::hclust(newDist)
+      cuts <- stats::cutree(subclusterStart, k = 2)
       cuts <- paste0(toSub[[i]], ".", cuts)
       clusters$cluster[vars] <- cuts
     }
@@ -109,15 +104,17 @@ pearsonClusters <- function(x, y) {
 }
 
 #' @rdname csTest
+#' @importFrom stats as.dist
+#' @importFrom stats cor
 #' @export
 pearsonDistance <- function(data) {
   p <- ncol(data)
   data <- as.matrix(data)
-  colPairs <- combn(1:ncol(data), 2)
+  colPairs <- utils::combn(1:ncol(data), 2)
   distances <- sapply(1:ncol(colPairs), function(i) {
     col1 <- colPairs[1, i]
     col2 <- colPairs[2, i]
-    1 - cor(data[, col1], data[, col2])
+    1 - stats::cor(data[, col1], data[, col2])
   })
   results <- as.data.frame(t(rbind(colPairs, distances)))
   colnames(results) <- c("col1", "col2", "distance")

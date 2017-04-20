@@ -13,6 +13,11 @@ burrowClusters(x, y)
 \item{x}{Data set 1.}
 
 \item{y}{Data set 2.}
+
+\item{B1}{Number of times to randomly subset. Defaults to 100.}
+}
+\value{
+Clustered random subspaces statistic.
 }
 \description{
 Burrow Clustered Random Subspaces

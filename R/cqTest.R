@@ -2,8 +2,10 @@
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
+#' 
+#' @importFrom highD2pop ChenQin.test
 #'
-#' @return
+#' @return Chen-Qin statistic for different mean vectors.
 #' @export
 
 cqTest <- function(x, y) {

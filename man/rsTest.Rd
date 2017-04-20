@@ -3,14 +3,11 @@
 \name{rsTest}
 \alias{rsTest}
 \alias{rsPval}
-\alias{hotellingT2}
 \title{Thulin's Random Subspaces}
 \usage{
 rsTest(x, y, k, B1 = 100)
 
-rsPval(x, y, k, B1 = 100, B2 = 100, parallel = TRUE, mc.cores = 2)
-
-hotellingT2(x, y)
+rsPval(x, y, k, B1 = 100, B2 = 100)
 }
 \arguments{
 \item{x}{Data set 1.}
@@ -20,6 +17,8 @@ hotellingT2(x, y)
 \item{k}{Number of dimensions to select. Defaults to floor((n1 + n2 - 2) / 2).}
 
 \item{B1}{Number of times to randomly subset full data. Defaults to 100.}
+
+\item{B2}{Number of permutations for calculating pvalue. Defaults to 100.}
 }
 \description{
 Thulin's Random Subspaces

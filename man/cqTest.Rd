@@ -11,6 +11,9 @@ cqTest(x, y)
 
 \item{y}{Data set 2.}
 }
+\value{
+Chen-Qin statistic for different mean vectors.
+}
 \description{
 Chen-Qin Test
 }
