@@ -16,5 +16,5 @@ corrCovariance(p, inblock, outblock, numBlocks)
 \item{numBlocks}{Total number of blocks. Defaults to p/25.}
 }
 \description{
-Correlated Block Covariance Matrix
+Creates a covariance structure with a block diagonal.
 }

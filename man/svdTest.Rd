@@ -15,5 +15,7 @@ hotellingT2(x, y)
 \item{y}{Data set 2.}
 }
 \description{
-SVD Test
+The following performs a Hotelling T2 test on a high dimensional
+dataset that has first been reduced via the singular value
+decomposition.
 }

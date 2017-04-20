@@ -1,4 +1,6 @@
 #' Correlated Block Covariance Matrix
+#' 
+#' Creates a covariance structure with a block diagonal.
 #'
 #' @param p Number of dimensions.
 #' @param inblock Covariance value inside of block.

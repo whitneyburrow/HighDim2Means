@@ -14,5 +14,6 @@ svdReducedPair(x, y, method = "svd")
 \item{method}{Method used for Singular Value Decompostion.}
 }
 \description{
-SVD Reduction for High Dimensional Data Pairs.
+The following performs dimension reduction on two samples of
+high dimensional data.
 }
