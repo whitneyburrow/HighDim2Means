@@ -1,0 +1,48 @@
+#' Burrow Clustered Random Subspaces
+#'
+#' @param x Data set 1.
+#' @param y Data set 2.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+crsTest <- function(x, y, B1 = 100) {
+  n1 <- nrow(x)
+  n2 <- nrow(y)
+  p <- ncol(x)
+  clusters <- burrowClusters(x, y)
+  cols <- lapply(unique(clusters$cluster), function(i) {
+    which(clusters$cluster == i)
+  })
+
+  res <- sapply(seq_along(cols), function(i) {
+    clusterCols <- cols[[i]]
+    xSub <- x[, clusterCols]
+    ySub <- y[, clusterCols]
+    k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
+    rsTest(xSub, ySub, B1, k = k)
+  })
+  sum(res)
+}
+
+
+#' @rdname crsTest
+#' @export
+burrowClusters <- function(x, y) {
+  df <- Reduce(f = rbind, list(x = x, y = y))
+  p <- ncol(x)
+  n <- nrow(df) - 2
+  kc <- floor(n / 3)
+  distances <- pearsonDistance(df)
+  clusterStart <- hclust(distances)
+  allCuts <- cutree(clusterStart, k = 1:ncol(x))
+  maxes <- sapply(1:p, function(i) max(table(allCuts[, i])))
+  k <- min(which(maxes < kc))
+  cuts <- allCuts[, k]
+  clusters <- data.frame(variable = names(cuts),
+                         cluster = as.character(cuts),
+                         stringsAsFactors = FALSE)
+  clusters
+}
