@@ -22,4 +22,5 @@ Imports:
     tidyr,
     highD2pop,
     parallel,
-    ClustOfVar
+    ClustOfVar,
+    flashClust

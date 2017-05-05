@@ -12,7 +12,7 @@ crsTest2 <- function(x, y, k, B1 = 100) {
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
-  clusters <- varClusters(rbind(x, y))
+  clusters <- burrowClusters2(x, y)
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
   })
@@ -24,5 +24,24 @@ crsTest2 <- function(x, y, k, B1 = 100) {
     k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
     rsTest(xSub, ySub, B1, k = k)
   })
-  mean(res)
+  sum(res)
+}
+
+#' @rdname crsTest
+#' @export
+burrowClusters2 <- function(x, y) {
+  df <- Reduce(f = rbind, list(x = x, y = y))
+  p <- ncol(x)
+  n <- nrow(df) - 2
+  kc <- floor(n / 2)
+  distances <- pearsonDistance(df)
+  clusterStart <- flashClust::hclust(distances)
+  allCuts <- cutree(clusterStart, k = 1:ncol(x))
+  maxes <- sapply(1:p, function(i) max(table(allCuts[, i])))
+  k <- min(which(maxes < kc))
+  cuts <- allCuts[, k]
+  clusters <- data.frame(variable = names(cuts),
+                         cluster = as.character(cuts),
+                         stringsAsFactors = FALSE)
+  clusters
 }
