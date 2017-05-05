@@ -33,12 +33,12 @@ burrowClusters2 <- function(x, y) {
   df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
   n <- nrow(df) - 2
-  kc <- floor(n / 2)
+  kc <- floor(2 * n / 3)
   distances <- pearsonDistance(df)
   clusterStart <- flashClust::hclust(distances)
   allCuts <- cutree(clusterStart, k = 1:ncol(x))
-  maxes <- sapply(1:p, function(i) max(table(allCuts[, i])))
-  k <- min(which(maxes < kc))
+  mins <- sapply(1:p, function(i) min(table(allCuts[, i])))
+  k <- max(which(mins > kc))
   cuts <- allCuts[, k]
   clusters <- data.frame(variable = names(cuts),
                          cluster = as.character(cuts),

@@ -15,7 +15,7 @@ rsTest <- function(x, y, k, B1 = 100) {
   x <- as.data.frame(x)
   y <- as.data.frame(y)
   p <- ncol(x)
-  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
+  if(missing(k)) k <- floor(n / 2)
   rs <- sapply(1:B1, function(i) {
     cols <- sample(p, k)
     xSub <- x[, cols]
