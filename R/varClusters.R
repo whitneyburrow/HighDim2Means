@@ -13,9 +13,5 @@ varClusters <- function(data) {
   tree <- ClustOfVar::hclustvar(data)
   index <- 2
   cuts <- ClustOfVar::cutreevar(tree, k = index)
-  while(min(table(cuts$cluster)) > kc) {
-    index <- index + 1
-    cuts <- ClustOfVar::cutreevar(tree, k = index)
-  }
   cuts
 }
