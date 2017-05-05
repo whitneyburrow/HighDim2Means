@@ -8,13 +8,11 @@
 #' @export
 
 
-crsTest2 <- function(x, y, B1 = 100) {
+crsTest2 <- function(x, y, k, B1 = 100) {
   n1 <- nrow(x)
   n2 <- nrow(y)
-  n <- n1 + n2 - 2
   p <- ncol(x)
-  k <- floor(n / 2)
-  clusters <- burrowClusters(x, y)
+  clusters <- varClusters(rbind(x, y))
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
   })
@@ -23,32 +21,8 @@ crsTest2 <- function(x, y, B1 = 100) {
     clusterCols <- cols[[i]]
     xSub <- x[, clusterCols]
     ySub <- y[, clusterCols]
-    if(ncol(xSub) < k) {
-      t <- hotellingT2(xSub, ySub)
-    } else {
-      t <- rsTest(xSub, ySub, B1, k = k)
-    }
-    t
+    k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
+    rsTest(xSub, ySub, B1, k = k)
   })
   mean(res)
-}
-
-
-#' @rdname crsTest
-#' @export
-burrowClusters2 <- function(x, y) {
-  df <- Reduce(f = rbind, list(x = x, y = y))
-  p <- ncol(x)
-  n <- nrow(df) - 2
-  kc <- floor(n / 2)
-  distances <- pearsonDistance(df)
-  clusterStart <- hclust(distances)
-  allCuts <- cutree(clusterStart, k = 1:ncol(x))
-  means <- sapply(1:p, function(i) mean(table(allCuts[, i])))
-  k <- max(which(means > kc))
-  cuts <- allCuts[, k]
-  clusters <- data.frame(variable = names(cuts),
-                         cluster = as.character(cuts),
-                         stringsAsFactors = FALSE)
-  clusters
 }
