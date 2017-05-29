@@ -26,7 +26,7 @@ csTest <- function(x, y, k, B1 = 100) {
     clusterCols <- cols[[i]]
     xSub <- as.data.frame(x[, clusterCols])
     ySub <- as.data.frame(y[, clusterCols])
-    hotellingCluster(xSub, ySub)
+    hotellingT2(xSub, ySub)
   })
   sum(res)
 }

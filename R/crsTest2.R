@@ -9,27 +9,29 @@
 
 
 crsTest2 <- function(x, y, k, B1 = 100) {
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
-  clusters <- burrowClusters2(x, y)
+  clusters <- pearsonClusters(x, y)
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
   })
-  
   res <- sapply(seq_along(cols), function(i) {
     clusterCols <- cols[[i]]
-    xSub <- x[, clusterCols]
-    ySub <- y[, clusterCols]
-    k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
-    rsTest(xSub, ySub, B1, k = k)
+    xSub <- as.data.frame(x[, clusterCols])
+    ySub <- as.data.frame(y[, clusterCols])
+    hotellingT2(xSub, ySub)
   })
-  sum(res)
+  clusterResult <- mean(res)
+  rsResult <- rsTest(x, y)
+  print(mean(c(clusterResult, rsResult)))
 }
 
 #' @rdname crsTest
 #' @export
 burrowClusters2 <- function(x, y) {
+  browser()
   df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
   n <- nrow(df) - 2
@@ -37,8 +39,8 @@ burrowClusters2 <- function(x, y) {
   distances <- pearsonDistance(df)
   clusterStart <- flashClust::hclust(distances)
   allCuts <- cutree(clusterStart, k = 1:ncol(x))
-  mins <- sapply(1:p, function(i) min(table(allCuts[, i])))
-  k <- max(which(mins > kc))
+  means <- sapply(1:p, function(i) mean(table(allCuts[, i])))
+  k <- which(abs(means - kc) == min(abs(means - kc)))
   cuts <- allCuts[, k]
   clusters <- data.frame(variable = names(cuts),
                          cluster = as.character(cuts),
