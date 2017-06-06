@@ -4,7 +4,7 @@
 \alias{crsTest2}
 \title{Burrow Clustered Random Subspaces}
 \usage{
-crsTest2(x, y, k, B1 = 100)
+crsTest2(x, y, k, B1 = 1000)
 }
 \arguments{
 \item{x}{Data set 1.}

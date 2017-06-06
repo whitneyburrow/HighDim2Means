@@ -8,7 +8,7 @@
 #' @export
 
 
-crsTest2 <- function(x, y, k, B1 = 100) {
+crsTest2 <- function(x, y, k, B1 = 1000) {
   if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   n1 <- nrow(x)
   n2 <- nrow(y)
@@ -24,7 +24,7 @@ crsTest2 <- function(x, y, k, B1 = 100) {
     k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
     rsTest(xSub, ySub, k = k, B1 = B1)
   })
-  mean(res)
+  sum(res)
 }
 
 #' @rdname crsTest
