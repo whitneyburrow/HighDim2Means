@@ -30,15 +30,17 @@ crsTest2 <- function(x, y, k, B1 = 100) {
 #' @rdname crsTest
 #' @export
 burrowClusters2 <- function(x, y) {
+  browser()
   df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
   n <- nrow(df) - 2
-  distances <- dist(t(x), method = "euclidean")
+  kc <- floor(2 * n / 3)
+  distances <- pearsonDistance(df)
   clusterStart <- flashClust::hclust(distances, method = "complete")
   allCuts <- cutree(clusterStart, k = 1:ncol(x))
-  k <- 4
+  avgs <- sapply(1:p, function(i) mean(table(allCuts[, i])))
+  k <- max(which(avgs > kc))
   cuts <- allCuts[, k]
-  cuts <- cutree(clusterStart, k = 4)
   clusters <- data.frame(variable = names(cuts),
                          cluster = as.character(cuts),
                          stringsAsFactors = FALSE)
