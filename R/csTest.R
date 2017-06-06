@@ -93,7 +93,7 @@ pearsonClusters <- function(x, y) {
       varNames <- clusters$variable[which(clusters$cluster == toSub[[i]])]
       newDF <- df[, vars]
       newDist <- pearsonDistance(newDF)
-      subclusterStart <- flashClust::hclust(newDist)
+      subclusterStart <- flashClust::hclust(newDist, method = "average")
       cuts <- stats::cutree(subclusterStart, k = 2)
       cuts <- paste0(toSub[[i]], ".", cuts)
       clusters$cluster[vars] <- cuts
