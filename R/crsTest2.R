@@ -22,7 +22,7 @@ crsTest2 <- function(x, y, k, B1 = 100) {
     xSub <- x[, clusterCols]
     ySub <- y[, clusterCols]
     k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
-    rsTest(xSub, ySub, B1, k = k)
+    rsTest(xSub, ySub, k = k, B1 = B1)
   })
   mean(res)
 }
