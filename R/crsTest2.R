@@ -30,7 +30,6 @@ crsTest2 <- function(x, y, k, B1 = 100) {
 #' @rdname crsTest
 #' @export
 burrowClusters2 <- function(x, y) {
-  browser()
   df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
   n <- nrow(df) - 2
