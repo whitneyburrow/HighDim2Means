@@ -2,7 +2,7 @@
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
-#' @param B1 Number of times to randomly subset. Defaults to 100.
+#' @param B1 Number of times to randomly subset. Defaults to 1000.
 #'
 #' @return Clustered random subspaces statistic.
 #' @export
@@ -24,7 +24,7 @@ crsTest2 <- function(x, y, k, B1 = 1000) {
     k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
     rsTest(xSub, ySub, k = k, B1 = B1)
   })
-  sum(res)
+  mean(res)
 }
 
 #' @rdname crsTest

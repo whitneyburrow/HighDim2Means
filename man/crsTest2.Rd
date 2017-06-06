@@ -11,7 +11,7 @@ crsTest2(x, y, k, B1 = 1000)
 
 \item{y}{Data set 2.}
 
-\item{B1}{Number of times to randomly subset. Defaults to 100.}
+\item{B1}{Number of times to randomly subset. Defaults to 1000.}
 }
 \value{
 Clustered random subspaces statistic.
