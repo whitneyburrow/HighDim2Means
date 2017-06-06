@@ -30,8 +30,9 @@ crsTest2 <- function(x, y, k, B1 = 100) {
 #' @rdname crsTest
 #' @export
 burrowClusters2 <- function(x, y) {
+  df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
-  n <- nrow(x) + nrow(y) - 2
+  n <- nrow(df) - 2
   distances <- dist(t(x), method = "euclidean")
   clusterStart <- flashClust::hclust(distances, method = "complete")
   allCuts <- cutree(clusterStart, k = 1:ncol(x))
