@@ -32,11 +32,15 @@ crsTest2 <- function(x, y, k, B1 = 100) {
 burrowClusters2 <- function(x, y) {
   p <- ncol(x)
   n <- nrow(x) + nrow(y) - 2
-  distances <- dist(x, method = "euclidean")
+  distances <- dist(t(x), method = "euclidean")
   clusterStart <- flashClust::hclust(distances, method = "complete")
+  allCuts <- cutree(clusterStart, k = 1:ncol(x))
+  k <- 4
+  cuts <- allCuts[, k]
   cuts <- cutree(clusterStart, k = 4)
   clusters <- data.frame(variable = names(cuts),
                          cluster = as.character(cuts),
                          stringsAsFactors = FALSE)
   clusters
 }
+
