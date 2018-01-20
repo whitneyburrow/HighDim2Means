@@ -12,7 +12,6 @@
 #'
 #' @examples
 shiftedMean <- function(mean, shift, m) {
-  browser()
   p <- length(mean)
   shiftVec <- c(rep(shift, 20), rep(0, 5))
   shiftVecXm <- rep(shiftVec, m)
