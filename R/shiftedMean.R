@@ -1,7 +1,7 @@
 #' Shifted Mean Vector for Data Generation
 #'
 #' This function shifts a given mean vector. The function shifts 4/5 of each
-#' block in m out of the total number of blocks.
+#' block in m out of the total number of blocks. (Thulin)
 #'
 #' @param mean Original mean vector.
 #' @param shift Amount to shift by.
@@ -12,6 +12,7 @@
 #'
 #' @examples
 shiftedMean <- function(mean, shift, m) {
+  browser()
   p <- length(mean)
   shiftVec <- c(rep(shift, 20), rep(0, 5))
   shiftVecXm <- rep(shiftVec, m)
