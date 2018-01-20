@@ -7,6 +7,7 @@
 #' @export
 
 bsTest <- function(x, y) {
+  browser()
   n1 <- nrow(x)
   n2 <- nrow(y)
   dbar <- colMeans(x) - colMeans(y)
