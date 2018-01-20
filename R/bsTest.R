@@ -7,7 +7,6 @@
 #' @export
 
 bsTest <- function(x, y) {
-  browser()
   n1 <- nrow(x)
   n2 <- nrow(y)
   dbar <- colMeans(x) - colMeans(y)
@@ -15,8 +14,8 @@ bsTest <- function(x, y) {
   sy <- cov(y)
   s <- ((n1 - 1) * sx + (n2 - 1) * sy) / (n1 + n2)
   trace <- sum(diag(s))
-  trace2 <- sum(diag(s^2))
-  num <- (1 / n1 + 1 / n2) ^ (-1) * t(dbar) * dbar - trace
+  trace2 <- sum(diag(s %*% s))
+  num <- (1 / n1 + 1 / n2) ^ (-1) * t(dbar) %*% dbar - trace
   den <- sqrt(2 * (trace2 - 1/(n1 + n2 - 2) * trace^2))
   num / den
 }
