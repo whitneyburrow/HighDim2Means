@@ -16,6 +16,6 @@ bsTest <- function(x, y) {
   trace <- sum(diag(s))
   trace2 <- sum(diag(s^2))
   num <- (1 / n1 + 1 / n2) ^ (-1) * t(dbar) * dbar - trace
-  den <- sqrt(2 * (trace2 - 1/n * trace^2))
+  den <- sqrt(2 * (trace2 - 1/(n1 + n2 - 2) * trace^2))
   num / den
 }
