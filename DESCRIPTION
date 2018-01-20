@@ -2,8 +2,8 @@ Package: HighDim2Means
 Type: Package
 Title: Test Difference of 2 Mean Vectors in High Dimension
 Version: 0.1.0
-Author: Whitney Burrow
-Maintainer: Whitney Burrow <whitneyvelvet@gmail.com>
+Author: Whitney Worley
+Maintainer: Whitney Worley <whitneyvelvet@gmail.com>
 Description: Runs various tests for equality of high dimensional mean vectors.
     Performs power comparisons. Performs SVD Reduction on high dimensional data.
 License: MIT License
