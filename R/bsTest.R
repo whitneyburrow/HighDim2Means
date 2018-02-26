@@ -19,3 +19,8 @@ bsTest <- function(x, y) {
   den <- sqrt(2 * (trace2 - 1/(n1 + n2 - 2) * trace^2))
   as.numeric(num / den)
 }
+
+bsPval <- function(x, y) {
+  t <- bsTest(x, y)
+   1 - pnorm(t)
+}
