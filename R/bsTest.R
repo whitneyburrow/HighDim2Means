@@ -20,6 +20,9 @@ bsTest <- function(x, y) {
   as.numeric(num / den)
 }
 
+#' @rdname bsTest
+#' @export
+
 bsPval <- function(x, y) {
   t <- bsTest(x, y)
    1 - pnorm(t)
