@@ -2,9 +2,12 @@
 % Please edit documentation in R/bsTest.R
 \name{bsTest}
 \alias{bsTest}
+\alias{bsPval}
 \title{Bai Sarandasa Test}
 \usage{
 bsTest(x, y)
+
+bsPval(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}
