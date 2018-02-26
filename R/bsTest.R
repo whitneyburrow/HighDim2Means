@@ -24,7 +24,6 @@ bsTest <- function(x, y) {
 #' @export
 
 bsPval <- function(x, y) {
-  browser()
   t <- bsTest(x, y)
    1 - pnorm(t)
 }
