@@ -24,3 +24,10 @@ sdTest <- function(x, y) {
   den <- (2 * (sum(diag(rhat))^2 - p^2 / (n1 + n2 - 2)) * cpn) ^ (1 / 2)
   num / den
 }
+
+#' @rdname sdTest
+#' @export
+
+sdPval <- function(x, y) {
+  t <- sdTest(x, y)
+}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/smpTest.R
 \name{smpTest}
 \alias{smpTest}
+\alias{smpPval}
 \title{Srivastava T+2 Test}
 \usage{
 smpTest(x, y)
+
+smpPval(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}

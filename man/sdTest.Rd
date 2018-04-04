@@ -2,9 +2,12 @@
 % Please edit documentation in R/sdTest.R
 \name{sdTest}
 \alias{sdTest}
+\alias{sdPval}
 \title{Srivastava-Du Test}
 \usage{
 sdTest(x, y)
+
+sdPval(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}
