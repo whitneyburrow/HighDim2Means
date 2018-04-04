@@ -32,3 +32,12 @@ sdPval <- function(x, y) {
   t <- sdTest(x, y)
   1 - pnorm(t)
 }
+
+#' @rdname sdTest
+#' @export
+
+sd.test <- function(x, y) {
+  t <- sdTest(x, y)
+  pval <- 1 - pnorm(t)
+  c(tsd = t, pvalue = pval)
+}

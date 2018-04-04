@@ -3,11 +3,14 @@
 \name{sdTest}
 \alias{sdTest}
 \alias{sdPval}
+\alias{sd.test}
 \title{Srivastava-Du Test}
 \usage{
 sdTest(x, y)
 
 sdPval(x, y)
+
+sd.test(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}
