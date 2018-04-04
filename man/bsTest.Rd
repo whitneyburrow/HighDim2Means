@@ -3,11 +3,14 @@
 \name{bsTest}
 \alias{bsTest}
 \alias{bsPval}
+\alias{bs.test}
 \title{Bai Sarandasa Test}
 \usage{
 bsTest(x, y)
 
 bsPval(x, y)
+
+bs.test(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}

@@ -27,3 +27,12 @@ bsPval <- function(x, y) {
   t <- bsTest(x, y)
    1 - pnorm(t)
 }
+
+#' @rdname bsTest
+#' @export
+
+bs.test <- function(x, y) {
+  t <- bsTest(x, y)
+  pval <- 1 - pnorm(t)
+  c(tbs = t, pvalue = pval)
+}
