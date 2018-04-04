@@ -46,3 +46,13 @@ rsPval <- function(x, y, k, B1 = 100, B2 = 100) {
   })
   sum(rsZ >= rsObs) / B2
 }
+
+#' @rdname rsTest
+#' @export
+
+rs.test <- function(x, y, k, B1 = 100, B2 = 100) {
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
+  t <- rsTest(x, y, k) 
+  pval <- rsPval(x, y, k) 
+  c(trs = t, pvalue = pval)
+}

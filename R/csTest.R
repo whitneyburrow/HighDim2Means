@@ -54,6 +54,16 @@ csPval <- function(x, y, k, B1 = 100, B2 = 100) {
 }
 
 #' @rdname csTest
+#' @export
+
+cs.test <- function(x, y, k, B1 = 100, B2 = 100) {
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
+  t <- csTest(x, y, k)
+  pval <- csPval(x, y, k)
+  c(tcs = t, pvalue = pval)
+}
+
+#' @rdname csTest
 #' @importFrom stats cov
 #' @export
 hotellingCluster <- function(x, y) {

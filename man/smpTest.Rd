@@ -3,11 +3,14 @@
 \name{smpTest}
 \alias{smpTest}
 \alias{smpPval}
+\alias{smp.test}
 \title{Srivastava T+2 Test}
 \usage{
 smpTest(x, y)
 
 smpPval(x, y)
+
+smp.test(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}

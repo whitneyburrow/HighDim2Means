@@ -3,11 +3,14 @@
 \name{rsTest}
 \alias{rsTest}
 \alias{rsPval}
+\alias{rs.test}
 \title{Thulin's Random Subspaces}
 \usage{
 rsTest(x, y, k, B1 = 100)
 
 rsPval(x, y, k, B1 = 100, B2 = 100)
+
+rs.test(x, y, k, B1 = 100, B2 = 100)
 }
 \arguments{
 \item{x}{Data set 1.}

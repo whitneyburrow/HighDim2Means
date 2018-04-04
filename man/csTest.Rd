@@ -3,6 +3,7 @@
 \name{csTest}
 \alias{csTest}
 \alias{csPval}
+\alias{cs.test}
 \alias{hotellingCluster}
 \alias{pearsonClusters}
 \alias{pearsonDistance}
@@ -12,6 +13,8 @@
 csTest(x, y, k, B1 = 100)
 
 csPval(x, y, k, B1 = 100, B2 = 100)
+
+cs.test(x, y, k, B1 = 100, B2 = 100)
 
 hotellingCluster(x, y)
 
