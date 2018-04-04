@@ -30,4 +30,5 @@ sdTest <- function(x, y) {
 
 sdPval <- function(x, y) {
   t <- sdTest(x, y)
+  1 - pnorm(t)
 }
