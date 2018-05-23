@@ -59,7 +59,13 @@ csPval <- function(x, y, k, B1 = 100, B2 = 100) {
 cs.test <- function(x, y, k, B1 = 100, B2 = 100) {
   if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   t <- csTest(x, y, k)
-  pval <- csPval(x, y, k)
+  csZ <- sapply(1:B2, function(i) {
+    xRows <- sample(n1 + n2, n1)
+    xNew <- z[xRows, ]
+    yNew <- z[-xRows, ]
+    csTest(xNew, yNew, k, B1)
+  })
+  pval <- sum(csZ >= csObs) / B2
   c(tcs = t, pvalue = pval)
 }
 
