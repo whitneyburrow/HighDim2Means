@@ -35,6 +35,7 @@ csTest <- function(x, y, k, B1 = 100) {
 #' @export
 
 csPval <- function(x, y, k, B1 = 100, B2 = 100) {
+  sum(rsZ >= rsObs) / B2
   n1 <- nrow(x)
   n2 <- nrow(y)
   n <- n1 + n2 - 2
