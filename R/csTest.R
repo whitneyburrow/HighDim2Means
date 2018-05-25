@@ -66,7 +66,7 @@ cs.test <- function(x, y, k, B1 = 100, B2 = 100) {
     yNew <- z[-xRows, ]
     csTest(xNew, yNew, k, B1)
   })
-  pval <- sum(csZ >= csObs) / B2
+  pval <- sum(csZ >= t) / B2
   c(tcs = t, pvalue = pval)
 }
 
