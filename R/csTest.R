@@ -14,10 +14,10 @@
 #'
 
 csTest <- function(x, y, k, B1 = 100) {
-  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   clusters <- pearsonClusters(x, y)
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
