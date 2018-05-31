@@ -57,6 +57,9 @@ csPval <- function(x, y, k, B1 = 100, B2 = 100) {
 #' @export
 
 cs.test <- function(x, y, k, B1 = 100, B2 = 100) {
+  n1 <- nrow(x)
+  n2 <- nrow(y)
+  p <- ncol(x)
   if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   t <- csTest(x, y, k)
   z <- rbind(x, y)
