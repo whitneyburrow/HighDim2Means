@@ -16,7 +16,7 @@ svdReducedPair2 <- function(x, y) {
   u <- sing$u[, 1:rank]
   d <- diag(sing$d[1:rank])
   v <- sing$v[, 1:rank]
-  reducedFull <- u %*% d %*% v
+  reducedFull <- u %*% d %*% t(v)
   reducedX <- reducedFull[1:nrow(x), ]
   reducedY <- reducedFull[(nrow(x) + 1):nrow(reducedFull), ]
   list(x = reducedX, y = reducedY)
