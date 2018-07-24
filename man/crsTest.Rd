@@ -2,13 +2,13 @@
 % Please edit documentation in R/crsTest.R, R/crsTest2.R
 \name{crsTest}
 \alias{crsTest}
-\alias{burrowClusters}
+\alias{worleyClusters}
 \alias{burrowClusters2}
-\title{Burrow Clustered Random Subspaces}
+\title{Worley Clustered Random Subspaces}
 \usage{
 crsTest(x, y, B1 = 100)
 
-burrowClusters(x, y)
+worleyClusters(x, y)
 
 burrowClusters2(x, y)
 }
@@ -23,5 +23,5 @@ burrowClusters2(x, y)
 Clustered random subspaces statistic.
 }
 \description{
-Burrow Clustered Random Subspaces
+Worley Clustered Random Subspaces
 }
