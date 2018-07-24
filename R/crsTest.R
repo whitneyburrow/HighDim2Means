@@ -1,4 +1,4 @@
-#' Burrow Clustered Random Subspaces
+#' Worley Clustered Random Subspaces
 #'
 #' @param x Data set 1.
 #' @param y Data set 2.
@@ -12,7 +12,7 @@ crsTest <- function(x, y, B1 = 100) {
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
-  clusters <- burrowClusters(x, y)
+  clusters <- worleyClusters(x, y)
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
   })
@@ -30,8 +30,7 @@ crsTest <- function(x, y, B1 = 100) {
 
 #' @rdname crsTest
 #' @export
-burrowClusters <- function(x, y) {
-  browser()
+worleyClusters <- function(x, y) {
   df <- Reduce(f = rbind, list(x = x, y = y))
   p <- ncol(x)
   n <- nrow(df) - 2
