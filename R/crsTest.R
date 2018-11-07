@@ -27,6 +27,25 @@ crsTest <- function(x, y, B1 = 100) {
   sum(res)
 }
 
+#' @rdname crsTest
+#' @export
+crs.test <- function(x, y, k, B1 = 100, B2 = 100) {
+  n1 <- nrow(x)
+  n2 <- nrow(y)
+  p <- ncol(x)
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
+  t <- crsTest(x, y, k)
+  z <- rbind(x, y)
+  crsZ <- sapply(1:B2, function(i) {
+    xRows <- sample(n1 + n2, n1)
+    xNew <- z[xRows, ]
+    yNew <- z[-xRows, ]
+    crsTest(xNew, yNew, k, B1)
+  })
+  pval <- sum(crsZ >= t) / B2
+  c(tcrs = t, pvalue = pval)
+}
+
 
 #' @rdname crsTest
 #' @export

@@ -2,11 +2,14 @@
 % Please edit documentation in R/crsTest.R, R/crsTest2.R
 \name{crsTest}
 \alias{crsTest}
+\alias{crs.test}
 \alias{worleyClusters}
 \alias{burrowClusters2}
 \title{Worley Clustered Random Subspaces}
 \usage{
 crsTest(x, y, B1 = 100)
+
+crs.test(x, y, k, B1 = 100, B2 = 100)
 
 worleyClusters(x, y)
 
