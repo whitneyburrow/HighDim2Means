@@ -24,6 +24,7 @@ bsTest <- function(x, y) {
 #' @export
 
 bsPval <- function(x, y, B2 = 500) {
+  browser()
   n1 <- nrow(x)
   n2 <- nrow(y)
   tobs <- bsTest(x, y)
