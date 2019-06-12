@@ -23,9 +23,19 @@ bsTest <- function(x, y) {
 #' @rdname bsTest
 #' @export
 
-bsPval <- function(x, y) {
-  t <- bsTest(x, y)
-   1 - pnorm(t)
+bsPval <- function(x, y, B2 = 500) {
+  n1 <- nrow(x)
+  n2 <- nrow(y)
+  tobs <- bsTest(x, y)
+  z <- rbind(x, y)
+  ti <- sapply(1:B2, function(i) {
+    i <- sample(n1, 1, n1 + n2)
+    j <- which(!(1:n1 + n2) %in% i)
+    xstar <- z[i, ]
+    ystar <- z[j, ]
+    bsTest(xstar, ystar)
+  })
+  1/B2 * sum(ti > tobs)
 }
 
 #' @rdname bsTest

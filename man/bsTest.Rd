@@ -8,7 +8,7 @@
 \usage{
 bsTest(x, y)
 
-bsPval(x, y)
+bsPval(x, y, B2 = 500)
 
 bs.test(x, y)
 }

@@ -8,7 +8,7 @@ Description: Runs various tests for equality of high dimensional mean vectors.
     Performs power comparisons. Performs SVD Reduction on high dimensional data.
 License: MIT License
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Imports:
     stats,
     utils,
