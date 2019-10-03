@@ -12,7 +12,7 @@ bsTest <- function(x, y) {
   dbar <- colMeans(x) - colMeans(y)
   sx <- cov(x)
   sy <- cov(y)
-  s <- ((n1 - 1) * sx + (n2 - 1) * sy) / (n1 + n2)
+  s <- ((n1 - 1) * sx + (n2 - 1) * sy) / (n1 + n2 - 2)
   trace <- sum(diag(s))
   trace2 <- sum(diag(s %*% s))
   num <- (1 / n1 + 1 / n2) ^ (-1) * t(dbar) %*% dbar - trace
