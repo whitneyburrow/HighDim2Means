@@ -23,7 +23,7 @@ crsTest <- function(x, y, k, B1 = 100) {
     xSub <- x[, clusterCols]
     ySub <- y[, clusterCols]
     knew <- min(k, ncol(xSub))
-    rsTest(xSub, ySub, B1, k = knew)
+    rsTest(xSub, ySub, k = knew, B1 = B1)
   })
   sum(res)
 }
