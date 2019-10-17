@@ -9,6 +9,7 @@
 
 
 crsTest <- function(x, y, k, B1 = 100) {
+  browser()
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
