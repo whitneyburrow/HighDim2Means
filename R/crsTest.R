@@ -19,7 +19,6 @@ crsTest <- function(x, y, k, B1 = 100) {
   })
 
   res <- sapply(seq_along(cols), function(i) {
-    browser()
     clusterCols <- cols[[i]]
     xSub <- x[, clusterCols, drop = FALSE]
     ySub <- y[, clusterCols, drop = FALSE]
