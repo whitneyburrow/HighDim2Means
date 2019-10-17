@@ -4,7 +4,6 @@
 \alias{crsTest}
 \alias{crs.test}
 \alias{worleyClusters}
-\alias{burrowClusters2}
 \title{Worley Clustered Random Subspaces}
 \usage{
 crsTest(x, y, B1 = 100)
@@ -13,7 +12,6 @@ crs.test(x, y, k, B1 = 100, B2 = 100)
 
 worleyClusters(x, y)
 
-burrowClusters2(x, y)
 }
 \arguments{
 \item{x}{Data set 1.}
