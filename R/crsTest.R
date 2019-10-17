@@ -8,10 +8,11 @@
 #' @export
 
 
-crsTest <- function(x, y, B1 = 100) {
+crsTest <- function(x, y, k, B1 = 100) {
   n1 <- nrow(x)
   n2 <- nrow(y)
   p <- ncol(x)
+  if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
   clusters <- worleyClusters(x, y)
   cols <- lapply(unique(clusters$cluster), function(i) {
     which(clusters$cluster == i)
@@ -21,8 +22,8 @@ crsTest <- function(x, y, B1 = 100) {
     clusterCols <- cols[[i]]
     xSub <- x[, clusterCols]
     ySub <- y[, clusterCols]
-    k <- min(floor((n1 + n2 - 2) / 2), ncol(xSub))
-    rsTest(xSub, ySub, B1, k = k)
+    knew <- min(k, ncol(xSub))
+    rsTest(xSub, ySub, B1, k = knew)
   })
   sum(res)
 }
@@ -34,7 +35,7 @@ crs.test <- function(x, y, k, B1 = 100, B2 = 100) {
   n2 <- nrow(y)
   p <- ncol(x)
   if(missing(k)) k <- floor((n1 + n2 - 2) / 2)
-  t <- crsTest(x, y, k)
+  t <- crsTest(x, y, k, B1)
   z <- rbind(x, y)
   crsZ <- sapply(1:B2, function(i) {
     xRows <- sample(n1 + n2, n1)
